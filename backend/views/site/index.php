@@ -13,6 +13,7 @@ $this->title = 'МикроСофт';
             <li> <a href="index.php/section"> Категория </a> </li>
             <li> <a href="index.php/product"> Продукт </a> </li>
             <li> <a href="index.php/news"> Новости </a> </li>
+            <li> <a href="index.php/review"> Отзывы </a> </li>
         </ul>
     </div>
 

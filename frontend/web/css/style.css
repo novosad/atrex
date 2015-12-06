@@ -685,8 +685,13 @@ a {
 
 .catalog-name a:hover,
 .navigation a:hover,
-.events-title a:hover {
+.events-title a:hover,
+.article_desc a:hover {
     color: #973232;
+}
+
+.article {
+    display: block;
 }
 
 .article_photo {
@@ -757,8 +762,31 @@ a {
     width: 200px;
 }
 
-.box-month, .box-years{
+.box-month, .box-years {
     float: left;
     width: 45%;
     margin-top: 10px;
+}
+
+.reviews {
+    margin-top: 30px;
+    display: none;
+}
+
+.review_view{
+    margin-top: 30px;
+}
+
+.review_user, .review_date{
+    float: left;
+    width: 30%;
+}
+
+.review_user{
+    color: #004d99;
+    font-weight: bold;
+}
+
+.review_look{
+    margin-bottom: 30px;
 }

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use app\models\Catalog;
 use app\models\News;
 use app\models\Product;
+use app\models\Review;
 use app\models\Section;
 use Yii;
 use common\models\LoginForm;
@@ -157,15 +158,47 @@ class SiteController extends Controller
 
     public function actionArticle()
     {
-        $article = new Product();
+        // form
+        $model = new ContactForm();
 
+        // id product
         $ware = $_GET['ware'];
+
+        // get data review
+        if ($model->load(Yii::$app->request->post())) {
+            // get data form
+            $reviewData = Yii::$app->request->post("ContactForm");
+
+            // get name and body
+            $reviewName = $reviewData['name'];
+            $reviewBody = $reviewData['body'];
+
+            // get current date
+            $reviewDate = date("Y").'-'.date("m").'-'.date("d");
+
+            // insert review
+            $review = new Review([
+               'review_date' => $reviewDate,
+                'review_name' => $reviewName,
+                'product_id' => $ware,
+                'review' => $reviewBody,
+            ]);
+            $review->save();
+
+        }
+
+        // count review product
+        $comment = Review::find()
+            ->where(['=', 'product_id', $ware])
+            ->all();
+        $amount = count($comment);
 
         // find product
         $article = Product::find()
             ->where(['=', 'id_product', $ware])
             ->all();
 
+        // current section
         foreach ($article as $vlArticle) {
             $curSection = $vlArticle->section_id;
         }
@@ -175,6 +208,7 @@ class SiteController extends Controller
             ->where(['=', 'id_section', $curSection])
             ->all();
 
+        // current catalog
         foreach ($section as $vlSection) {
             $curCatalog = $vlSection->catalog_id;
         }
@@ -188,6 +222,9 @@ class SiteController extends Controller
             'article' => $article,
             'section' => $section,
             'catalog' => $catalog,
+            'model' => $model,
+            'amount' => $amount,
+            'comment' => $comment,
         ]);
     }
 
@@ -250,14 +287,14 @@ class SiteController extends Controller
 
     public function actionIncident()
     {
-        if (isset($_POST['incident']) || (isset($_POST['years'])) ) {
+        if (isset($_POST['incident']) || (isset($_POST['years']))) {
 
             $incident = Yii::$app->request->post('incident');
 
             $years = Yii::$app->request->post('years');
 
             $events = News::find()
-                ->where(['LIKE', 'date_news', $years.'-' . $incident . '-__', false])
+                ->where(['LIKE', 'date_news', $years . '-' . $incident . '-__', false])
                 ->all();
 
         }
