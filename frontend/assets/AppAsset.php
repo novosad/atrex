@@ -24,7 +24,8 @@ class AppAsset extends AssetBundle
 
     ];
     public $js = [
-        'js/jquery.js',
+//        'js/jquery.js',
+        'js/events.js',
         'js/script.js',
         'js/colin-slider.js',
 

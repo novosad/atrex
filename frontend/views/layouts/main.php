@@ -20,7 +20,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?> | МикроСОфт </title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -42,9 +42,9 @@ AppAsset::register($this);
                 $menuItems = [
                     ['label' => 'Главная', 'url' => ['/site/index']],
                     ['label' => 'Каталог', 'url' => ['/site/catalog']],
-                    ['label' => 'Новости', 'url' => ['/site/']],
-                    ['label' => 'Контакты', 'url' => ['/site/contact']],
-                    ['label' => 'Обратная связь', 'url' => ['/site/']],
+                    ['label' => 'Новости', 'url' => ['/site/events']],
+//                    ['label' => 'Контакты', 'url' => ['/site/']],
+                    ['label' => 'Обратная связь', 'url' => ['/site/contact']],
                 ];
                 echo Nav::widget([
                     'options' => ['class' => 'navbar-nav navbar-right'],
@@ -100,7 +100,7 @@ AppAsset::register($this);
                 </form>
                 <div class="clr"></div>
                 <div class="gadget">
-                    <h2> Новости </h2>
+                    <h2> Последние новости </h2>
                     <?= NewsWidget::widget(); ?>
                 </div>
             </div>

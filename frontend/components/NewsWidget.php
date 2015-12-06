@@ -20,6 +20,7 @@ class NewsWidget extends Widget
         // query
         $news = News::find()
             ->orderBy('date_news DESC')
+            ->limit(5)
             ->all();
 
         // render view

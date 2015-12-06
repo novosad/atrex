@@ -191,6 +191,12 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Display news
+     *
+     * @return string
+     */
+
     public function actionNews()
     {
         $id = $_GET['id'];
@@ -199,17 +205,77 @@ class SiteController extends Controller
             ->where(['=', 'id_news', $id])
             ->all();
 
-        // refactor view date
-        foreach ($news as $vlNews){
-            $dtDate = time($vlNews->date_news);
+        return $this->render('news', [
+            'news' => $news,
+        ]);
+    }
+
+    /**
+     * Display all news
+     */
+
+    public function actionEvents()
+    {
+        // contact
+        $model = new ContactForm();
+
+        // month
+        $month = array('01' => 'Январь', '02' => 'Февраль', '03' => 'Март', '04' => 'Апрель',
+            '05' => 'Май', '06' => 'Июнь', '07' => 'Июль', '08' => 'Август',
+            '09' => 'Сентябрь', '10' => 'Октябрь', '11' => 'Ноябрь', '12' => 'Декабрь');
+
+        // year
+        $allYears = News::find()
+            ->all();
+
+        foreach ($allYears as $vlYears) {
+            $current = substr($vlYears->date_news, 0, 4);
+            $years[$current] = $current;
         }
 
-        $dtNews = date('d/m/Y', $dtDate);
+        $years = array_unique($years);
 
-        return $this->render('news',[
-            'news' => $news,
-            'dtNews' => $dtNews,
+        return $this->render('events', [
+            'model' => $model,
+            'month' => $month,
+            'years' => $years,
         ]);
+    }
+
+    /**
+     * ajax request news
+     *
+     * @return string
+     */
+
+    public function actionIncident()
+    {
+        if (isset($_POST['incident']) || (isset($_POST['years'])) ) {
+
+            $incident = Yii::$app->request->post('incident');
+
+            $years = Yii::$app->request->post('years');
+
+            $events = News::find()
+                ->where(['LIKE', 'date_news', $years.'-' . $incident . '-__', false])
+                ->all();
+
+        }
+
+        return $this->renderAjax('incident', [
+            'events' => $events,
+        ]);
+    }
+
+    /**
+     * range
+     */
+
+    public function actionRange()
+    {
+
+        return $this->render('range');
+
     }
 
     /**

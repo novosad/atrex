@@ -684,7 +684,8 @@ a {
 }
 
 .catalog-name a:hover,
-.navigation a:hover {
+.navigation a:hover,
+.events-title a:hover {
     color: #973232;
 }
 
@@ -729,4 +730,35 @@ a {
     font-style: italic;
     font-weight: bold;
     text-align: right;
+}
+
+.news-lack {
+    color: #973232;
+}
+
+.events {
+    margin-top: 90px;
+}
+
+.events-filtr {
+    margin-bottom: 20px;
+}
+
+.events-date {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.events-title {
+    margin-bottom: 10px;
+}
+
+.dynamic-month, .dynamic-years {
+    width: 200px;
+}
+
+.box-month, .box-years{
+    float: left;
+    width: 45%;
+    margin-top: 10px;
 }
