@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id_section
  * @property integer $catalog_id
  * @property string $section_name
- * @property string $child
+ * @property string $section_photo
  *
  * @property Product[] $products
  * @property Catalog $catalog
@@ -31,10 +31,10 @@ class Section extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['catalog_id', 'section_name', 'child'], 'required'],
+            [['catalog_id', 'section_name', 'section_photo'], 'required'],
             [['catalog_id'], 'integer'],
-            [['child'], 'string'],
-            [['section_name'], 'string', 'max' => 50]
+            [['section_name'], 'string', 'max' => 50],
+            [['section_photo'], 'string', 'max' => 30]
         ];
     }
 
@@ -47,7 +47,7 @@ class Section extends \yii\db\ActiveRecord
             'id_section' => 'Id Section',
             'catalog_id' => 'Catalog ID',
             'section_name' => 'Section Name',
-            'child' => 'Child',
+            'section_photo' => 'Section Photo',
         ];
     }
 

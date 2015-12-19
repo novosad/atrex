@@ -14,10 +14,10 @@ foreach ($events as $vlEvents) {
     $date_news = date('d-m-Y',$unixTime);
     ?>
 
-    <div class="events-date"> <?= $date_news; ?> </div>
+    <div class="events-date"> <?php echo $date_news; ?> </div>
     <div class="events-title">
-        <a href="news?id=<?= $vlEvents->id_news; ?>">
-            <?= $vlEvents->title_news ?>
+        <a href="news?id=<?php echo $vlEvents->id_news; ?>">
+            <?php echo $vlEvents->title_news ?>
         </a>
     </div>
 

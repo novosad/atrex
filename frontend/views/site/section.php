@@ -19,7 +19,7 @@ $this->title = 'Раздел | '.$caption;
 foreach ($section as $vlSection) {
     ?>
     <div class="catalog-view">
-        <img src="/img/icon-section/brand.jpeg" class="catalog-photo"
+        <img src="/img/icon-section/<?php echo $vlSection->section_photo; ?>" class="catalog-photo"
              width="196px" height="196px" alt=""/> <br/>
 
         <div class="catalog-name">

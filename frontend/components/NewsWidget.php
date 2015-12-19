@@ -14,9 +14,6 @@ class NewsWidget extends Widget
 
     public function run()
     {
-        // create model
-        $news = new News();
-
         // query
         $news = News::find()
             ->orderBy('date_news DESC')

@@ -14,18 +14,18 @@ foreach ($news as $vlNews){
     // current date
     $date_news = date('d-m-Y',$unixTime);
     ?>
-    <h1> <?= $vlNews->title_news; ?> </h1>
+    <h1> <?php echo $vlNews->title_news; ?> </h1>
 
     <div class="news-photo">
-        <img src="/img/news/<?= $vlNews->photo_news ?>" alt="" />
+        <img src="/img/news/<?php echo $vlNews->photo_news ?>" alt="" />
     </div>
 
     <div class="news-date">
-        <?= $date_news ?>
+        <?php echo $date_news ?>
     </div>
 
     <div class="news-article">
-        <?= $vlNews->description_news ?>
+        <?php echo $vlNews->description_news ?>
     </div>
 
 <?php } ?>

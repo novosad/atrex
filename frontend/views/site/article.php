@@ -33,9 +33,9 @@ foreach ($catalog as $vlCatalog) {
 ?>
 <div class="article">
     <div class="navigation"><a href="catalog"> Каталог </a> /
-        <a href="section?sect=<?= $urlCatalog; ?>"> <?= $dirCatalog ?> </a> /
-        <a href="product?item=<?= $urlSection; ?>"> <?= $dirSection; ?> </a> /
-        <?= $caption; ?> </div>
+        <a href="section?sect=<?php echo $urlCatalog; ?>"> <?php echo $dirCatalog; ?> </a> /
+        <a href="product?item=<?php echo $urlSection; ?>"> <?php echo $dirSection; ?> </a> /
+        <?php echo $caption; ?> </div>
 
     <?php
     $this->title = $caption;
@@ -55,7 +55,7 @@ foreach ($catalog as $vlCatalog) {
 </div>
 <div class="clr"></div>
 <div class="review_view">
-    <p><i> Отзывов: </i> <?= $amount ?> </p>
+    <p><i> Отзывов: </i> <?php echo $amount; ?> </p>
     <?php
     foreach ($comment as $vlComment) {
         // get date
@@ -66,14 +66,14 @@ foreach ($catalog as $vlCatalog) {
         $date_comment = date('d-m-Y', $unixTime); ?>
         <div class="review_look">
             <div class="review_user">
-                <?= $vlComment->review_name ?>
+                <?php echo $vlComment->review_name; ?>
             </div>
             <div class="review_date">
-                <?= $date_comment ?>
+                <?php echo $date_comment ?>
             </div>
             <div class="clr"></div>
             <div class="review_text">
-                <?= $vlComment->review ?>
+                <?php echo $vlComment->review; ?>
             </div>
         </div>
     <?php
@@ -87,16 +87,16 @@ foreach ($catalog as $vlCatalog) {
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(); ?>
 
-            <?= $form->field($model, 'name')->label('Имя') ?>
+            <?php echo $form->field($model, 'name')->label('Имя'); ?>
 
-            <?= $form->field($model, 'body')->textArea(['rows' => 6])->label('Отзыв') ?>
+            <?php echo $form->field($model, 'body')->textArea(['rows' => 6])->label('Отзыв'); ?>
 
-            <?= $form->field($model, 'verifyCode')->label('Введите код')->widget(Captcha::className(), [
+            <?php echo $form->field($model, 'verifyCode')->label('Введите код')->widget(Captcha::className(), [
                 'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
             ]) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Отправить отзыв', ['class' => 'btn btn-primary']) ?>
+                <?php echo Html::submitButton('Отправить отзыв', ['class' => 'btn btn-primary']); ?>
 
             </div>
         </div>

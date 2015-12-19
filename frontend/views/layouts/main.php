@@ -10,6 +10,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use app\components\NewsWidget;
+use app\components\SearchWidget;
 
 AppAsset::register($this);
 ?>
@@ -82,22 +83,14 @@ AppAsset::register($this);
     </div>
     <div class="content">
         <div class="content_resize">
-
             <div class="mainbar">
-
                 <div class="wrap">
                     <?= Alert::widget() ?>
                     <?= $content ?>
                 </div>
             </div>
             <div class="sidebar">
-                <form class="sisea-search-form" id="formsearch" action="search-results.html" method="get">
-   <span>
-       <input type="text" name="search" id="search" class="search" value=""/>
-   </span>
-                    <input type="hidden" name="id" value="11"/>
-                    <input type="submit" class="button_search" value=""/>
-                </form>
+                <?php echo SearchWidget::widget(); ?>
                 <div class="clr"></div>
                 <div class="gadget">
                     <h2> Последние новости </h2>

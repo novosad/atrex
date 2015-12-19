@@ -5,6 +5,7 @@ use app\models\Catalog;
 use app\models\News;
 use app\models\Product;
 use app\models\Review;
+use app\models\SearchTable;
 use app\models\Section;
 use Yii;
 use common\models\LoginForm;
@@ -174,11 +175,11 @@ class SiteController extends Controller
             $reviewBody = $reviewData['body'];
 
             // get current date
-            $reviewDate = date("Y").'-'.date("m").'-'.date("d");
+            $reviewDate = date("Y") . '-' . date("m") . '-' . date("d");
 
             // insert review
             $review = new Review([
-               'review_date' => $reviewDate,
+                'review_date' => $reviewDate,
                 'review_name' => $reviewName,
                 'product_id' => $ware,
                 'review' => $reviewBody,
@@ -301,6 +302,146 @@ class SiteController extends Controller
 
         return $this->renderAjax('incident', [
             'events' => $events,
+        ]);
+    }
+
+    /**
+     * view result
+     *
+     * @return string
+     */
+
+    public function actionResult()
+    {
+
+        if (isset($_POST['search-bt'])) {
+            // search
+            $search_text = Yii::$app->request->post('search-text');
+            // query
+            $resSearch = SearchTable::find()
+                ->where("MATCH (name_search) AGAINST ('$search_text' ) ")
+                ->all();
+
+            if (count($resSearch) > 0) {
+
+                foreach ($resSearch as $rowSearch) {
+                    $name_all[] = $rowSearch->name_search;
+                    $type_all[] = $rowSearch->type_search;
+                    $link_all[] = $rowSearch->link_search;
+                }
+
+                // priority
+                $priority_type = $type_all[0];
+                $priority_link = $link_all[0];
+
+                // choice priority
+                switch ($priority_type) {
+                    // catalog
+                    case 1:
+                        $count_catalog = count($name_all);
+                        // phrase
+                        if ($count_catalog != 1) {
+
+                            // all product from query
+                            for ($pr = 0; $pr < count($link_all); $pr++) {
+                                if ($type_all[$pr] == '3') {
+                                    $bfProduct[] = $name_all[$pr];
+                                }
+                            }
+                            foreach ($bfProduct as $bflProduct) {
+                                $resSection = Section::find()
+                                    ->where(['=', 'catalog_id', $priority_link])
+                                    ->all();
+                                foreach ($resSection as $rowSection) {
+                                    $section[] = $rowSection->id_section;
+                                }
+
+                                foreach ($section as $vlSection) {
+                                    $resProduct = Product::find()
+                                        ->where(['=', 'section_id', $vlSection])
+                                        ->andWhere(['=', 'product_name', $bflProduct])
+                                        ->all();
+                                }
+                                foreach ($resProduct as $rowProduct) {
+                                    $id_product[] = $rowProduct->id_product;
+                                    $product_name[] = $rowProduct->product_name;
+                                    $photo_image[] = $rowProduct->photo;
+                                }
+                            }
+                            $product = array_combine($id_product, $product_name);
+                            $image = array_combine($id_product, $photo_image);
+                        } else {
+                            $resSection = Section::find()
+                                ->where(['=', 'catalog_id', $priority_link])
+                                ->all();
+                            foreach ($resSection as $rowSection) {
+                                $section[] = $rowSection->id_section;
+                            }
+
+                            foreach ($section as $vlSection) {
+                                $resProduct = Product::find()
+                                    ->where(['=', 'section_id', $vlSection])
+                                    ->all();
+                            }
+                            foreach ($resProduct as $rowProduct) {
+                                $id_product[] = $rowProduct->id_product;
+                                $product_name[] = $rowProduct->product_name;
+                                $photo_image[] = $rowProduct->photo;
+                            }
+                            $product = array_combine($id_product, $product_name);
+                            $image = array_combine($id_product, $photo_image);
+                        }
+
+                        break;
+                    // section
+                    case 2:
+                        for ($pr = 0; $pr < count($link_all); $pr++) {
+                            if ($type_all[$pr] == '3') {
+                                $section[] = $link_all[$pr];
+                            }
+                        }
+
+                        foreach ($section as $vlSection) {
+                            $resProduct = Product::find()
+                                ->where(['=', 'id_product', $vlSection])
+                                ->all();
+
+                            foreach ($resProduct as $rowProduct) {
+                                $id_product[] = $rowProduct->id_product;
+                                $product_name[] = $rowProduct->product_name;
+                                $photo_image[] = $rowProduct->photo;
+                            }
+                            $product = array_combine($id_product, $product_name);
+                            $image = array_combine($id_product, $photo_image);
+                        }
+
+                        break;
+                    // product
+                    case 3:
+                        $resProduct = Product::find()
+                            ->where(['=', 'id_product', $priority_link])
+                            ->all();
+
+                        foreach ($resProduct as $rowProduct) {
+                            $id_product[] = $rowProduct->id_product;
+                            $product_name[] = $rowProduct->product_name;
+                            $photo_image[] = $rowProduct->photo;
+                        }
+                        $product = array_combine($id_product, $product_name);
+                        $image = array_combine($id_product, $photo_image);
+                        break;
+                }
+
+            } else {
+                $product = null;
+                $image = null;
+            }
+        }
+
+        return $this->render('result', [
+            'product' => $product,
+            'search_text' => $search_text,
+            'image' => $image,
         ]);
     }
 

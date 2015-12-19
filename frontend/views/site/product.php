@@ -17,8 +17,8 @@ $this->title = 'Продукт | ' . $caption;
 ?>
 
     <div class="navigation"><a href="catalog"> Каталог </a> /
-        <a href="section?sect=<?= $urlDirect; ?>"> <?= $directory ?> </a> /
-        <?= $caption; ?> </div>
+        <a href="section?sect=<?php echo $urlDirect; ?>"> <?php echo $directory ?> </a> /
+        <?php echo $caption; ?> </div>
 
     <h1> <?php echo $caption; ?> </h1>
 

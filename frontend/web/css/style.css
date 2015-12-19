@@ -251,18 +251,20 @@ h1 small {
     padding: 0;
     float: right;
     width: 240px;
+    border-radius: 10px;
+    background: #F5F5DC;
+    padding: 5px;
+    margin-top: 20px;
 }
 
 .content .sidebar {
     margin: 0 0 12px;
     padding: 8px 0;
+
 }
 
 .gadget {
-    border-radius: 10px;
-    background: #F5F5DC;
     padding: 5px;
-    margin-top: 20px;
 }
 
 .list-news {
@@ -568,7 +570,7 @@ ol li .send {
 
 #formsearch {
     margin: 0;
-    padding: 16px 0;
+    padding: 16px 0 16px 10px;
     width: auto;
     height: 30px;
 }
@@ -585,7 +587,7 @@ ol li .send {
     margin: 0;
     padding: 8px 6px;
     float: left;
-    width: 172px;
+    width: 180px;
     font-size: 12px;
     line-height: 14px;
     color: #000000;
@@ -606,6 +608,23 @@ ol li .send {
 
 .sisea-result span {
     color: #000000;
+}
+
+.advanced-search a {
+    font-size: 10px;
+    padding-left: 1px;
+}
+
+.advanced-search a:hover {
+    color: #973232;
+}
+
+.list-search {
+    margin-top: 10px;
+}
+
+.list-search li {
+    list-style-type: none;
 }
 
 .outcome {
@@ -773,20 +792,36 @@ a {
     display: none;
 }
 
-.review_view{
+.review_view {
     margin-top: 30px;
 }
 
-.review_user, .review_date{
+.review_user, .review_date {
     float: left;
     width: 30%;
 }
 
-.review_user{
+.review_user {
     color: #004d99;
     font-weight: bold;
 }
 
-.review_look{
+.review_look {
     margin-bottom: 30px;
+}
+
+.result-view {
+    margin-top: 10px;
+}
+
+.list-result {
+    list-style: none;
+}
+
+.list-result li{
+    padding-top: 25px;
+}
+
+.list-result li a:hover{
+    color: #973232;
 }
