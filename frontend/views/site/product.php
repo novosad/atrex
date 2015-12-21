@@ -26,7 +26,7 @@ $this->title = 'Товары | ' . $caption;
 foreach ($product as $vlProduct) {
     ?>
     <div class="catalog-view">
-        <img src="/img/catalog/<?php echo $vlProduct->photo; ?>.jpg"
+        <img src="/img/catalog/<?php echo $vlProduct->photo; ?>"
              class="catalog-photo" width="196px" height="196px" alt=""/> <br/>
 
         <div class="catalog-name">

@@ -43,7 +43,7 @@ foreach ($catalog as $vlCatalog) {
         ?>
         <h1> <?php echo $vlArticle->product_name; ?> </h1>
         <div class="article_photo">
-            <img src="/img/catalog/<?php echo $vlArticle->photo; ?>.jpg" alt=""/>
+            <img src="/img/catalog/<?php echo $vlArticle->photo; ?>" alt=""/>
         </div>
         <div class="article_desc">
             <?php echo $vlArticle->description; ?>
