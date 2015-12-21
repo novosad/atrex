@@ -12,6 +12,7 @@ use Yii;
  * @property string $review_name
  * @property integer $product_id
  * @property string $review
+ * @property string $review_moderation
  *
  * @property Product $product
  */
@@ -31,9 +32,10 @@ class Review extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['review_date', 'review_name', 'product_id', 'review'], 'required'],
+            [['review_date', 'review_name', 'product_id', 'review', 'review_moderation'], 'required'],
             [['review_date'], 'safe'],
             [['product_id'], 'integer'],
+            [['review_moderation'], 'string'],
             [['review_name'], 'string', 'max' => 100],
             [['review'], 'string', 'max' => 200]
         ];
@@ -50,6 +52,7 @@ class Review extends \yii\db\ActiveRecord
             'review_name' => 'Review Name',
             'product_id' => 'Product ID',
             'review' => 'Review',
+            'review_moderation' => 'Review Moderation',
         ];
     }
 

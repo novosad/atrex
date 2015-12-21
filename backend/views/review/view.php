@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'review_name',
             'product_id',
             'review',
+            'review_moderation',
         ],
     ]) ?>
 

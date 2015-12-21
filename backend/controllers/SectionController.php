@@ -63,6 +63,9 @@ class SectionController extends Controller
         $model = new Section();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+
+
             return $this->redirect(['view', 'id' => $model->id_section]);
         } else {
             return $this->render('create', [

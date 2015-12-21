@@ -177,20 +177,27 @@ class SiteController extends Controller
             // get current date
             $reviewDate = date("Y") . '-' . date("m") . '-' . date("d");
 
+            // moderation
+            $reviewModeration = 'no';
+
             // insert review
             $review = new Review([
                 'review_date' => $reviewDate,
                 'review_name' => $reviewName,
                 'product_id' => $ware,
                 'review' => $reviewBody,
+                'review_moderation' => $reviewModeration,
             ]);
             $review->save();
+
+            Yii::$app->session->setFlash('success', 'После успешной модерации отзыв будет опубликован.');
 
         }
 
         // count review product
         $comment = Review::find()
             ->where(['=', 'product_id', $ware])
+            ->andWhere(['=', 'review_moderation', 'yes'])
             ->all();
         $amount = count($comment);
 

@@ -13,7 +13,7 @@ foreach ($catalog as $vlCatalog){
     $urlDirect = $vlCatalog->id_catalog;
 }
 
-$this->title = 'Продукт | ' . $caption;
+$this->title = 'Товары | ' . $caption;
 ?>
 
     <div class="navigation"><a href="catalog"> Каталог </a> /

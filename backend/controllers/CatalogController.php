@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use app\models\Catalog;
+use app\models\SearchTable;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,6 +64,28 @@ class CatalogController extends Controller
         $model = new Catalog();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            // data catalog
+            $data_catalog = $_POST['Catalog'];
+            // name catalog
+            foreach ($data_catalog as $vlCatalog){
+                $name_catalog = $vlCatalog;
+            }
+
+            // last id catalog
+            $last_catalog = Catalog::find()
+                ->orderBy('id_catalog DESC')
+                ->one();
+            $last = $last_catalog->id_catalog;
+
+            // insert search_table
+            $search_catalog = new SearchTable([
+                'name_search' => $name_catalog,
+                'type_search' => '1',
+                'link_search' => $last,
+            ]);
+            $search_catalog->save();
+
             return $this->redirect(['view', 'id' => $model->id_catalog]);
         } else {
             return $this->render('create', [
@@ -82,6 +105,14 @@ class CatalogController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // data update
+            $data_update = $_POST['Catalog'];
+            $catalog_update = $data_update['catalog_name'];
+            $id_update = $data_update['id_catalog'];
+
+            SearchTable::updateAll(['name_search' => $catalog_update],
+                ['link_search' => $id_update, 'type_search' => '1']);
+
             return $this->redirect(['view', 'id' => $model->id_catalog]);
         } else {
             return $this->render('update', [
@@ -98,6 +129,14 @@ class CatalogController extends Controller
      */
     public function actionDelete($id)
     {
+        // delete date
+        $date_delete = $this->findModel($id);
+        $id_delete = $date_delete["id_catalog"];
+        $name_delete = $date_delete['catalog_name'];
+
+        SearchTable::deleteAll(['name_search' => $name_delete, 'link_search' => $id_delete,
+            'type_search' => '1']);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
