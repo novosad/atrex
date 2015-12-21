@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use app\models\Product;
+use app\models\SearchTable;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,6 +64,28 @@ class ProductController extends Controller
         $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            // data product
+            $data_product = $_POST['Product'];
+            // name product
+            foreach ($data_product as $vlProduct){
+                $name_product = $vlProduct;
+            }
+
+            // last id catalog
+            $last_product = Product::find()
+                ->orderBy('id_product DESC')
+                ->one();
+            $last = $last_product->id_product;
+
+            // insert search_table
+            $search_product = new SearchTable([
+                'name_search' => $name_product,
+                'type_search' => '3',
+                'link_search' => $last,
+            ]);
+            $search_product->save();
+
             return $this->redirect(['view', 'id' => $model->id_product]);
         } else {
             return $this->render('create', [
@@ -82,6 +105,15 @@ class ProductController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            // data update
+            $data_update = $_POST['Product'];
+            $product_update = $data_update['product_name'];
+            $id_update = $data_update['id_product'];
+
+            SearchTable::updateAll(['name_search' => $product_update],
+                ['link_search' => $id_update, 'type_search' => '3']);
+
             return $this->redirect(['view', 'id' => $model->id_product]);
         } else {
             return $this->render('update', [
@@ -98,6 +130,14 @@ class ProductController extends Controller
      */
     public function actionDelete($id)
     {
+        // delete date
+        $date_delete = $this->findModel($id);
+        $id_delete = $date_delete["id_product"];
+        $name_delete = $date_delete['product_name'];
+
+        SearchTable::deleteAll(['name_search' => $name_delete, 'link_search' => $id_delete,
+            'type_search' => '3']);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
