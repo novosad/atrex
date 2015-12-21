@@ -22,6 +22,7 @@ use app\models\Catalog;
     ); ?>
 
     <?= $form->field($model, 'section_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'id_section')->hiddenInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

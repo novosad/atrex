@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use app\models\Section;
+use app\models\SearchTable;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -64,7 +65,26 @@ class SectionController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
+            // data section
+            $data_section = $_POST['Section'];
+            // name catalog
+            foreach ($data_section as $vlSection){
+                $name_section = $vlSection;
+            }
 
+            // last id catalog
+            $last_section = Section::find()
+                ->orderBy('id_section DESC')
+                ->one();
+            $last = $last_section->id_section;
+
+            // insert search_table
+            $search_section = new SearchTable([
+                'name_search' => $name_section,
+                'type_search' => '2',
+                'link_search' => $last,
+            ]);
+            $search_section->save();
 
             return $this->redirect(['view', 'id' => $model->id_section]);
         } else {
@@ -85,6 +105,15 @@ class SectionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            // data update
+            $data_update = $_POST['Section'];
+            $section_update = $data_update['section_name'];
+            $id_update = $data_update['id_section'];
+
+            SearchTable::updateAll(['name_search' => $section_update],
+                ['link_search' => $id_update, 'type_search' => '2']);
+
             return $this->redirect(['view', 'id' => $model->id_section]);
         } else {
             return $this->render('update', [
@@ -101,6 +130,14 @@ class SectionController extends Controller
      */
     public function actionDelete($id)
     {
+        // delete date
+        $date_delete = $this->findModel($id);
+        $id_delete = $date_delete["id_section"];
+        $name_delete = $date_delete['section_name'];
+
+        SearchTable::deleteAll(['name_search' => $name_delete, 'link_search' => $id_delete,
+            'type_search' => '2']);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
