@@ -29,7 +29,8 @@ class Catalog extends \yii\db\ActiveRecord
     {
         return [
             [['catalog_name'], 'required'],
-            [['catalog_name'], 'string', 'max' => 50]
+            [['catalog_name'], 'string', 'max' => 50],
+            [['catalog_photo'], 'string', 'max' => 50],
         ];
     }
 
@@ -41,6 +42,7 @@ class Catalog extends \yii\db\ActiveRecord
         return [
             'id_catalog' => 'Id Catalog',
             'catalog_name' => 'Catalog Name',
+            'catalog_photo' => 'Catalog Photo',
         ];
     }
 

@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\News */
 
-$this->title = 'Update News: ' . ' ' . $model->id_news;
-$this->params['breadcrumbs'][] = ['label' => 'News', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id_news, 'url' => ['view', 'id' => $model->id_news]];
+$this->title = 'Обновить новость: ' . ' ' . $model->title_news;
+$this->params['breadcrumbs'][] = ['label' => 'Новости', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->title_news, 'url' => ['view', 'id' => $model->id_news]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="news-update">

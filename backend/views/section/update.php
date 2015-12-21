@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Section */
 
-$this->title = 'Update Section: ' . ' ' . $model->id_section;
-$this->params['breadcrumbs'][] = ['label' => 'Sections', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id_section, 'url' => ['view', 'id' => $model->id_section]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Update Section: ' . ' ' . $model->section_name;
+$this->params['breadcrumbs'][] = ['label' => 'Раздел', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->section_name, 'url' => ['view', 'id' => $model->id_section]];
+$this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="section-update">
 

@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Catalog */
 
-$this->title = 'Update Catalog: ' . ' ' . $model->id_catalog;
-$this->params['breadcrumbs'][] = ['label' => 'Catalogs', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id_catalog, 'url' => ['view', 'id' => $model->id_catalog]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Обновить каталог: ' . ' ' . $model->catalog_name;
+$this->params['breadcrumbs'][] = ['label' => 'Каталог', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->catalog_name, 'url' => ['view', 'id' => $model->id_catalog]];
+$this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="catalog-update">
 

@@ -14,8 +14,6 @@ use app\models\Section;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php // $form->field($model, 'section_id')->textInput() ?>
-
     <?=
     $form->field($model, 'section_id')->dropDownList(ArrayHelper::map(
         Section::find()->all(), 'id_section', 'section_name'
@@ -33,7 +31,7 @@ use app\models\Section;
     <?= $form->field($model, 'id_product')->hiddenInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

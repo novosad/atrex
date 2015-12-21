@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Section */
 
-$this->title = $model->id_section;
-$this->params['breadcrumbs'][] = ['label' => 'Sections', 'url' => ['index']];
+$this->title = $model->section_name;
+$this->params['breadcrumbs'][] = ['label' => 'Раздел', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="section-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_section], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_section], [
+        <?= Html::a('Обновить', ['update', 'id' => $model->id_section], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id_section], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы действительно хотите удалить раздел?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_section',
             'catalog_id',
             'section_name',
+            'section_photo',
         ],
     ]) ?>
 

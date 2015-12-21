@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Catalog */
 
-$this->title = $model->id_catalog;
-$this->params['breadcrumbs'][] = ['label' => 'Catalogs', 'url' => ['index']];
+$this->title = $model->catalog_name;
+$this->params['breadcrumbs'][] = ['label' => 'Каталог', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="catalog-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_catalog], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_catalog], [
+        <?= Html::a('Обновить', ['update', 'id' => $model->id_catalog], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id_catalog], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы действительно хотите удалить данный пункт?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id_catalog',
             'catalog_name',
+            'catalog_photo',
         ],
     ]) ?>
 

@@ -33,7 +33,8 @@ class Section extends \yii\db\ActiveRecord
         return [
             [['catalog_id', 'section_name'], 'required'],
             [['catalog_id'], 'integer'],
-            [['section_name'], 'string', 'max' => 50]
+            [['section_name'], 'string', 'max' => 50],
+            [['section_photo'], 'string', 'max' => 50]
         ];
     }
 
@@ -46,6 +47,7 @@ class Section extends \yii\db\ActiveRecord
             'id_section' => 'Id Section',
             'catalog_id' => 'Catalog ID',
             'section_name' => 'Section Name',
+            'section_photo' => 'Section Photo',
         ];
     }
 

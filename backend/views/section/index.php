@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sections';
+$this->title = 'Раздел';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="section-index">
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Section', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать раздел', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -22,9 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id_section',
-            //'catalog_id',
             'section_name',
+            'section_photo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
