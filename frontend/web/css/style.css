@@ -699,6 +699,13 @@ a {
     text-align: center;
 }
 
+.review-view {
+    width: 33%;
+    float: left;
+    margin: 20px 0 20px 0;
+    text-align: center;
+}
+
 .catalog-name {
     text-align: center;
 }

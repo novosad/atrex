@@ -1,6 +1,6 @@
 <?php
 /**
- * widget random project
+ * widget random product
  */
 
 namespace app\components;

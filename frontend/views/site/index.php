@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use app\components\RandomWidget;
+use app\components\LatestWidget;
 
 $this->title = 'МикроСофт';
 ?>
@@ -17,4 +18,5 @@ $this->title = 'МикроСофт';
 
 <div class="latest-review">
    <div class="latest-title"> Последние отзывы </div>
+    <?php echo LatestWidget::widget(); ?>
 </div>
