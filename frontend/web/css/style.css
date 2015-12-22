@@ -696,6 +696,7 @@ a {
     width: 33%;
     float: left;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .catalog-name {
@@ -818,10 +819,22 @@ a {
     list-style: none;
 }
 
-.list-result li{
+.list-result li {
     padding-top: 25px;
 }
 
-.list-result li a:hover{
+.list-result li a:hover {
     color: #973232;
+}
+
+.random-title,
+.latest-title {
+    background-color: #cd853f;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.latest-review {
+    margin-top: 20px;
 }
