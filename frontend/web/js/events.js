@@ -1,5 +1,5 @@
 /**
- * ajax filtr news
+ * ajax filter news
  */
 
 $(document).ready(function () {

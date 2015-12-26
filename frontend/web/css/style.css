@@ -845,3 +845,22 @@ a {
 .latest-review {
     margin-top: 20px;
 }
+
+.date-latest, .name-latest {
+    display: block;
+    float: left;
+}
+
+.name-latest {
+    margin-left: 30px;
+}
+
+.review-latest {
+    display: block;
+}
+
+#cs-button-coin-slider-1,
+#cs-button-coin-slider-2,
+#cs-button-coin-slider-3 {
+    display: none !important;
+}

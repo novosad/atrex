@@ -11,6 +11,7 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use app\components\NewsWidget;
 use app\components\SearchWidget;
+use app\components\SliderWidget;
 
 AppAsset::register($this);
 ?>
@@ -56,26 +57,13 @@ AppAsset::register($this);
             </div>
             <div class="clr"></div>
             <div class="logo">
-                <h1 class="mark"><a href="http://kirilka.esy.es/"> МикроСофт </a>
+                <h1 class="mark"><a href=""> МикроСофт </a>
                     <small>Работать нужно так, чтобы последующие клиенты были друзьями предыдущих</small>
                 </h1>
             </div>
             <div class="clr"></div>
             <div class="slider">
-                <div id="coin-slider">
-                    <a href="contact.html"><img src="/images/slide33.jpg" width="960"
-                                                height="360" alt=""/>
-                        <span>Компьютер с легкостью заменяет целый ряд устройств, так необходимых нам ежедневно.</span>
-                    </a>
-                    <a href="#"><img src="/images/slide11.jpg"
-                                     width="960" height="360" alt=""/>
-                        <span>За последнее десятилетие компьютеры заполнили жизнь практически каждого человека, теперь они есть почти в каждой семье.</span>
-                    </a>
-                    <a href="#"><img src="/images/slide44.jpg" width="960"
-                                     height="360" alt=""/>
-                        <span>Для многих компьютерная техника - первый помощник в работе, а некоторые не могут представить свой досуг веселым без компьютера.</span>
-                    </a>
-                </div>
+                <?php echo SliderWidget::widget(); ?>
                 <div class="clr"></div>
             </div>
             <div class="clr"></div>

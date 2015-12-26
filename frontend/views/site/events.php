@@ -14,11 +14,11 @@ $this->registerJsFile(
 );
 
 $this->registerJsFile(
-    '/js/events.js'
+    '/js/mondi.js'
 );
 
 $this->registerJsFile(
-    '/js/mondi.js'
+    '/js/events.js'
 );
 
 ?>
