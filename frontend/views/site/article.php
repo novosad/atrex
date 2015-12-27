@@ -15,6 +15,40 @@ $this->registerJsFile(
     '/js/review.js'
 );
 
+echo newerton\fancybox\FancyBox::widget([
+    'target' => 'a[class=fancybox]',
+    'helpers' => true,
+    'mouse' => true,
+    'config' => [
+        'maxWidth' => '90%',
+        'maxHeight' => '90%',
+        'playSpeed' => 7000,
+        'padding' => 0,
+        'fitToView' => false,
+        'width' => '70%',
+        'height' => '70%',
+        'autoSize' => false,
+        'closeClick' => false,
+        'openEffect' => 'elastic',
+        'closeEffect' => 'elastic',
+        'prevEffect' => 'elastic',
+        'nextEffect' => 'elastic',
+        'closeBtn' => false,
+        'openOpacity' => true,
+        'helpers' => [
+            'title' => ['type' => 'float'],
+            'buttons' => [],
+            'thumbs' => ['width' => 68, 'height' => 50],
+            'overlay' => [
+                'css' => [
+                    'background' => 'rgba(0, 0, 0, 0.8)'
+                ]
+            ]
+        ],
+    ]
+]);
+
+
 // formation menu
 foreach ($article as $capArticle) {
     $caption = $capArticle->product_name;
@@ -43,7 +77,9 @@ foreach ($catalog as $vlCatalog) {
         ?>
         <h1> <?php echo $vlArticle->product_name; ?> </h1>
         <div class="article_photo">
-            <img src="/img/catalog/<?php echo $vlArticle->photo; ?>" alt=""/>
+            <a href="/img/gallery/<?php echo $vlArticle->photo; ?>" class="fancybox">
+                <img src="/img/catalog/<?php echo $vlArticle->photo; ?>" alt=""/>
+            </a>
         </div>
         <div class="article_desc">
             <?php echo $vlArticle->description; ?>

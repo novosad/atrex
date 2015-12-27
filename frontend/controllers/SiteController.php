@@ -453,6 +453,15 @@ class SiteController extends Controller
     }
 
     /**
+     * selection product
+     */
+
+    public function actionSelection()
+    {
+        return $this->render('selection');
+    }
+
+    /**
      * range
      */
 

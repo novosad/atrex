@@ -23,8 +23,8 @@ class AppAsset extends AssetBundle
 
     ];
     public $js = [
-        'js/script.js',
         'js/colin-slider.js',
+        'js/script.js',
 
     ];
     public $depends = [

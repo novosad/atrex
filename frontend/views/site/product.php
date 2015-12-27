@@ -26,11 +26,11 @@ $this->title = 'Товары | ' . $caption;
 foreach ($product as $vlProduct) {
     ?>
     <div class="catalog-view">
+        <a href="article?ware=<?php echo $vlProduct->id_product; ?>">
         <img src="/img/catalog/<?php echo $vlProduct->photo; ?>"
              class="catalog-photo" width="196px" height="196px" alt=""/> <br/>
 
         <div class="catalog-name">
-            <a href="article?ware=<?php echo $vlProduct->id_product; ?>">
                 <?php echo $vlProduct->product_name; ?>
             </a>
         </div>
