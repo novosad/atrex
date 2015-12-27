@@ -458,7 +458,11 @@ class SiteController extends Controller
 
     public function actionSelection()
     {
-        return $this->render('selection');
+        $model = new ContactForm();
+
+        return $this->render('selection', [
+            'model' => $model,
+        ]);
     }
 
     /**

@@ -44,9 +44,8 @@ AppAsset::register($this);
                 $menuItems = [
                     ['label' => 'Главная', 'url' => ['/site/index']],
                     ['label' => 'Каталог', 'url' => ['/site/catalog']],
-                    ['label' => 'Подбор товара',  'url' => ['/site/selection']],
+//                    ['label' => 'Подбор товара',  'url' => ['/site/selection']],
                     ['label' => 'Новости', 'url' => ['/site/events']],
-//                    ['label' => 'Контакты', 'url' => ['/site/']],
                     ['label' => 'Обратная связь', 'url' => ['/site/contact']],
                 ];
                 echo Nav::widget([

@@ -37,6 +37,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Админка', 'url' => ['/site/index']],
     ];
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Логин', 'url' => ['/site/login']];
     } else {
@@ -46,6 +47,7 @@ AppAsset::register($this);
             'linkOptions' => ['data-method' => 'post']
         ];
     }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,

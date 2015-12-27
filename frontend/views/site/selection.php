@@ -3,27 +3,23 @@
  * selection product
  */
 
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+
 $this->title = 'Выбор продукта';
-
-$this->registerJsFile(
-    '/js/jquery.js'
-);
-
-$this->registerJsFile(
-    '/js/jquery.ui-slider.js'
-);
 
 ?>
 
 <h1>Подбор товара</h1>
 
-<div id="slider"></div>
+<?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-<script type="text/javascript">
-    jQuery("#slider").slider({
-        min: 0,
-        max: 1000,
-        values: [0,1000],
-        range: true
-    });
-</script>
+<?= $form->field($model, 'name')->widget(\yii\jui\SliderInput::classname(), [
+    'clientOptions' => [
+        'min' => 1,
+        'max' => 10,
+        'values' => [0,100],
+    ],
+]) ?>
+
+<?php ActiveForm::end(); ?>

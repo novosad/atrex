@@ -7,8 +7,8 @@ $this->title = 'МикроСофт';
 <div class="site-index">
 
     <div class="body-content">
-      Выберите одну из таблиц для редактирования.
-        <ul>
+     <h3> Выберите одну из таблиц для редактирования. </h3>
+        <ul class="list-admin">
             <li> <a href="index.php/catalog"> Каталог </a> </li>
             <li> <a href="index.php/section"> Категория </a> </li>
             <li> <a href="index.php/product"> Продукт </a> </li>
