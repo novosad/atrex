@@ -465,6 +465,26 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionBand()
+    {
+        if (isset($_POST['start']) || (isset($_POST['finish']))) {
+
+            $start = Yii::$app->request->post('start');
+
+            $finish = Yii::$app->request->post('finish');
+
+            $band = Product::find()
+                ->where('price > '.$start. 'AND price <'.$finish)
+                ->all();
+            var_dump($band);
+
+        }
+
+        return $this->renderAjax('band', [
+            'events' => $band,
+        ]);
+    }
+
     /**
      * range
      */

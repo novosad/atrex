@@ -41,8 +41,8 @@ class Catalog extends \yii\db\ActiveRecord
     {
         return [
             'id_catalog' => 'Id Catalog',
-            'catalog_name' => 'Catalog Name',
-            'catalog_photo' => 'Catalog Photo',
+            'catalog_name' => 'Каталог',
+            'catalog_photo' => 'Фото',
         ];
     }
 

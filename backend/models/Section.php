@@ -45,9 +45,9 @@ class Section extends \yii\db\ActiveRecord
     {
         return [
             'id_section' => 'Id Section',
-            'catalog_id' => 'Catalog ID',
-            'section_name' => 'Section Name',
-            'section_photo' => 'Section Photo',
+            'catalog_id' => 'Каталог',
+            'section_name' => 'Раздел',
+            'section_photo' => 'Фото',
         ];
     }
 

@@ -48,11 +48,11 @@ class Review extends \yii\db\ActiveRecord
     {
         return [
             'id_review' => 'Id Review',
-            'review_date' => 'Review Date',
-            'review_name' => 'Review Name',
+            'review_date' => 'Дата',
+            'review_name' => 'Пользователь',
             'product_id' => 'Product ID',
-            'review' => 'Review',
-            'review_moderation' => 'Review Moderation',
+            'review' => 'Отзыв',
+            'review_moderation' => 'Модерация',
         ];
     }
 

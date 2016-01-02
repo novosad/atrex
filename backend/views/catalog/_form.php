@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'catalog_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'catalog_name')->label('Каталог')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'catalog_photo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'catalog_photo')->label('Фото')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_catalog')->hiddenInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'id_catalog')->label('')->hiddenInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
