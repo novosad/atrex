@@ -16,8 +16,10 @@ use app\models\Catalog;
     <?php $form = ActiveForm::begin(); ?>
 
     <?=
-        $form->field($model, 'section_id')->label('Категория')->dropDownList(ArrayHelper::map(
-        Section::find()->all(), 'id_section', 'section_name'
+    $form->field($model, 'section_id')->dropDownList(ArrayHelper::map(
+        Section::find()->with('catalog')->all(), 'id_section', function($items) {
+        return $items->catalog->catalog_name . ' -> ' . $items->section_name;
+    }
     ));
     ?>
 
