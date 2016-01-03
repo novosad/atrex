@@ -8,6 +8,9 @@
     zoom: 1;
     position: relative;
     float: right;
+    height: 250px!important;
+    width: 960px!important;
+    margin-bottom: 30px;
 }
 
 .coin-slider a {

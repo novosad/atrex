@@ -76,7 +76,7 @@ a {
 
 .logo {
     padding: 0 0 0 20px;
-    height: 160px;
+    height: 100px;
     text-align: center;
 }
 
@@ -103,7 +103,7 @@ h1 {
 }
 
 .mark {
-    padding: 50px 0 0 0 !important;
+    padding: 25px 0 0 0 !important;
     background: none !important;
 }
 
@@ -185,7 +185,7 @@ h1 small {
     margin: 0;
     padding: 13px 20px;
     font-size: 12px;
-    line-height: 19px;
+    line-height: 11px;
     font-weight: normal;
     color: #fff;
     text-decoration: none;
@@ -883,4 +883,12 @@ a {
 .work-about{
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.navbar-brand{
+    padding: 35px!important;
+}
+
+.navbar-inverse{
+    height: 80px!important;
 }
