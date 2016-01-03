@@ -892,3 +892,7 @@ a {
 .navbar-inverse{
     height: 80px!important;
 }
+
+#sel_choice{
+    margin: 20px 0 10px 0;
+}

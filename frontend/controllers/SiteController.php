@@ -462,8 +462,19 @@ class SiteController extends Controller
     {
         $model = new ContactForm();
 
+        $arr_catalog = Catalog::find()
+            ->all();
+
+        foreach ($arr_catalog as $vlCatalog) {
+            $id[] = $vlCatalog->id_catalog;
+            $name[] = $vlCatalog->catalog_name;
+        }
+
+        $catalog = array_combine($id, $name);
+
         return $this->render('selection', [
             'model' => $model,
+            'catalog' => $catalog,
         ]);
     }
 
@@ -475,10 +486,31 @@ class SiteController extends Controller
 
             $finish = Yii::$app->request->post('finish');
 
-            $band = Product::find()
-                ->where(['BETWEEN','price', $start, $finish])
-                ->orderBy('price')
-                ->all();
+            $catalog = Yii::$app->request->post('catalog');
+
+            if ($catalog != 'all') {
+                $section = Section::find()
+                    ->where(['=', 'catalog_id', $catalog])
+                    ->all();
+
+                foreach ($section as $vlSection){
+                    $sect[] = $vlSection->id_section;
+                }
+
+                foreach ($sect as $vlSect){
+                    $band = Product::find()
+                        ->where(['BETWEEN', 'price', $start, $finish])
+                        ->andWhere(['=', 'section_id', $vlSect])
+                        ->orderBy('price')
+                        ->all();
+                }
+
+            } else {
+                $band = Product::find()
+                    ->where(['BETWEEN', 'price', $start, $finish])
+                    ->orderBy('price')
+                    ->all();
+            }
         }
 
         return $this->renderAjax('band', [
