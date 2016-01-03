@@ -17,7 +17,7 @@ use app\models\Catalog;
 
     <?=
     $form->field($model, 'section_id')->dropDownList(ArrayHelper::map(
-        Section::find()->with('catalog')->all(), 'id_section', function($items) {
+        Section::find()->with('catalog')->all(), 'id_section', function ($items) {
         return $items->catalog->catalog_name . ' -> ' . $items->section_name;
     }
     ));

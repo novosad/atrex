@@ -474,14 +474,13 @@ class SiteController extends Controller
             $finish = Yii::$app->request->post('finish');
 
             $band = Product::find()
-                ->where('price > '.$start. 'AND price <'.$finish)
+                ->where(['BETWEEN','price', $start, $finish])
+                ->orderBy('price')
                 ->all();
-            var_dump($band);
-
         }
 
         return $this->renderAjax('band', [
-            'events' => $band,
+            'band' => $band,
         ]);
     }
 
