@@ -770,6 +770,11 @@ a {
 
 .events {
     margin-top: 90px;
+    display: none;
+}
+
+.all-news {
+    margin-top: 90px;
 }
 
 .events-filtr {
@@ -863,4 +868,19 @@ a {
 #cs-button-coin-slider-2,
 #cs-button-coin-slider-3 {
     display: none !important;
+}
+
+.about img {
+    height: 32px;
+    width: 32px;
+}
+
+.status-icq {
+    height: 16px!important;
+    width: 64px!important;
+}
+
+.work-about{
+    text-transform: uppercase;
+    font-weight: bold;
 }

@@ -42,10 +42,11 @@ AppAsset::register($this);
                     ],
                 ]);
                 $menuItems = [
-                    ['label' => 'Главная', 'url' => ['/site/index']],
-                    ['label' => 'Каталог', 'url' => ['/site/catalog']],
+                    ['label' => 'Главная',        'url' => ['/site/index']],
+                    ['label' => 'Каталог',        'url' => ['/site/catalog']],
                     ['label' => 'Подбор товара',  'url' => ['/site/selection']],
-                    ['label' => 'Новости', 'url' => ['/site/events']],
+                    ['label' => 'Новости',        'url' => ['/site/events']],
+                    ['label' => 'О нас',          'url' => ['/site/about']],
                     ['label' => 'Обратная связь', 'url' => ['/site/contact']],
                 ];
                 echo Nav::widget([

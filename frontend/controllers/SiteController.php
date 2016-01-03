@@ -270,10 +270,11 @@ class SiteController extends Controller
             '09' => 'Сентябрь', '10' => 'Октябрь', '11' => 'Ноябрь', '12' => 'Декабрь');
 
         // year
-        $allYears = News::find()
+        $all_news = News::find()
+            ->orderBy('date_news DESC')
             ->all();
 
-        foreach ($allYears as $vlYears) {
+        foreach ($all_news as $vlYears) {
             $current = substr($vlYears->date_news, 0, 4);
             $years[$current] = $current;
         }
@@ -284,6 +285,7 @@ class SiteController extends Controller
             'model' => $model,
             'month' => $month,
             'years' => $years,
+            'all_news' => $all_news,
         ]);
     }
 
