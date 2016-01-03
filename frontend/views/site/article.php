@@ -83,7 +83,7 @@ foreach ($catalog as $vlCatalog) {
         </div>
         <div class="article_desc">
             <?php echo $vlArticle->description; ?>
-            <p class="article_price"> <?php echo $vlArticle->price; ?> руб. </p>
+            <p class="article_price"> <?php echo number_format($vlArticle->price, 0, "", " "); ?> руб. </p>
 
             <p><a href="#" id="review-add"> Оставить отзыв </a></p>
         </div>
