@@ -394,33 +394,7 @@ stringifyFilterCode = function (type, models, dealers) {
             "lights": true,
             "value": 1.6
         },
-        {
-            "desc": "BPO",
-            "key": "percent_td_bpo",
-            "lights": true,
-            "value": 1.6
-        },
-        {
-            "desc": "YoY",
-            "key": "percent_yoy",
-            "value": 0.333
-        },
-        {
-            "desc": "CPO",
-            "key": "sales_cpo_td",
-            "value": 6
-        },
-        {
-            "desc": "BPO",
-            "key": "percent_td_cpobpo",
-            "lights": true,
-            "value": 1.5
-        },
-        {
-            "desc": "YoY",
-            "key": "percent_cpo_yoy",
-            "value": 0.2
-        }
+        ...
     ],
     "type": "mtd"
 }
