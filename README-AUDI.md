@@ -760,3 +760,53 @@ Totals row is always presents in result of this method (on carline level)
 {
     "error": "Date shouldn't be empty"
 }
+
+### GET /report/carline
+| Param        | Mandatory | Description          | Sample       |
+| -------------|:---------:|:--------------------:| ------------:|
+| date         | YES       | date                 |   2015-10-08 |
+| filter       | no        | geo,models,dealer    |   ^R,CENTRAL |
+
+Totals row is always presents in result of this method (on carline level)
+
+200 OK
+```javascript
+{
+    "date": "2015-10-08",
+    "category": "history_chart",
+    "filter": "^R,CENTRAL",
+    "chart_types": [
+        {
+            "type": "sales_new",
+            "desc": "New Sales",
+            "charts": [
+                {
+                    "index": 0,
+                    "desc": "Central",
+                    "cols": [
+                        {
+                            "name": "2004",
+                            "value": 430
+                        },
+                        {
+                            "name": "2005",
+                            "value": 504
+                        },
+                        {
+                            "name": "2006",
+                            "value": 508
+                        },
+                        ...
+                    ]
+                }
+            ]
+        },
+        ...
+    ]
+}
+```
+422 Unprocessable Entity
+```javascript
+{
+    "error": "Date shouldn't be empty"
+}
