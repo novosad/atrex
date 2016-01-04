@@ -538,3 +538,99 @@ Totals row is always presents in result of this method (on area level)
     "error": "Date shouldn't be empty"
 }
 ```
+
+### GET /report/region
+| Param        | Mandatory | Description          | Sample       |
+| -------------|:---------:|:--------------------:| ------------:|
+| date         | YES       | date                 |   2015-10-08 |
+| type         | YES       | period (mtd,qtd,ytd) |   mtd        |
+| sale_type    | no        | New, CPO             |   new        |
+| filter       | no        | geo,models,dealer    |   ^R,CENTRAL |
+
+Totals row is always presents in result of this method
+
+200 OK
+```javascript
+{
+    "date": "2015-10-08",
+    "category": "region",
+    "type": "mtd",
+    "sale_type": "new",
+    "filter": "^R,CENTRAL",
+    "keys": {
+        "key": "region",
+        "subkey": null
+    },
+    "regular_cols": [
+        {
+            "key": "sales_new_yesterday",
+            "value": "7-Oct",
+            "default_visible": 1,
+            "default_sort": null
+        },
+        {
+            "key": "pure_retail_mtd",
+            "value": "Sales",
+            "default_visible": 1,
+            "default_sort": null
+        },
+        {
+            "key": "task_pace_mtd",
+            "value": "Task",
+            "default_visible": 1,
+            "default_sort": "desc"
+        },
+        ...
+    ],
+    "layers": [
+        {
+            "index": 0,
+            "key": "region",
+            "rows": [
+                {
+                    "is_total_row": 0,
+                    "items": [
+                        {
+                            "key": "region",
+                            "value": "Central"
+                        },
+                        {
+                            "key": "sales_new_yesterday",
+                            "value": 0
+                        },
+                        {
+                            "key": "pure_retail_mtd",
+                            "value": 8
+                        },
+                        ...
+                    ]
+                },
+                {
+                    "is_total_row": 1,
+                    "items": [
+                        {
+                            "key": "region",
+                            "value": "Total"
+                        },
+                        {
+                            "key": "sales_new_yesterday",
+                            "value": 0
+                        },
+                        {
+                            "key": "pure_retail_mtd",
+                            "value": 8
+                        },
+                        ...
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+422 Unprocessable Entity
+```javascript
+{
+    "error": "Date shouldn't be empty"
+}
+```
