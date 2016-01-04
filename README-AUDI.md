@@ -760,6 +760,7 @@ Totals row is always presents in result of this method (on carline level)
 {
     "error": "Date shouldn't be empty"
 }
+```
 
 ### GET /report/carline
 | Param        | Mandatory | Description          | Sample       |
