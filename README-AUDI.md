@@ -881,3 +881,74 @@ Totals row is always presents in result of this method (on carline level)
     "error": "Date shouldn't be empty"
 }
 ```
+
+### GET /report/multikpi
+| Param        | Mandatory | Description          | Sample       |
+| -------------|:---------:|:--------------------:| ------------:|
+| date         | YES       | date                 |   2015-10-08 |
+
+200 OK
+```javascript
+{
+    "date": "2015-10-08",
+    "category": "multikpi",
+    "regular_cols": [
+        {
+            "key": "sales_new_yesterday",
+            "value": "7-Oct",
+            "default_visible": 1
+        },
+        {
+            "key": "pure_retail_mtd",
+            "value": "Sales MTD",
+            "default_visible": 1
+        },
+        ...
+    ],
+    "layers": [
+        {
+            "index": 0,
+            "key": "region",
+            "desc": "Region",
+            "rows": [
+                {
+                    "is_total_row": 0,
+                    "items": [
+                        {
+                            "key": "region",
+                            "value": "Central"
+                        },
+                        {
+                            "key": "sales_new_yesterday",
+                            "value": 0
+                        },
+                        ...
+                    ]
+                },
+                ...
+                {
+                    "is_total_row": 1,
+                    "items": [
+                        {
+                            "key": "region",
+                            "value": "Total"
+                        },
+                        {
+                            "key": "sales_new_yesterday",
+                            "value": 0
+                        },
+                        ...
+                    ]
+                }
+            ]
+        },
+        ...
+    ]
+}
+```
+422 Unprocessable Entity
+```javascript
+{
+    "error": "Date shouldn't be empty"
+}
+```
