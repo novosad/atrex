@@ -427,6 +427,77 @@ stringifyFilterCode = function (type, models, dealers) {
 }
 ```
 
+### GET /report/map
+| Param        | Mandatory | Description          | Sample       |
+| -------------|:---------:|:--------------------:| ------------:|
+| date         | YES       | date                 |   2015-10-08 |
+| type         | YES       | period (mtd,qtd,ytd) |   mtd        |
+| level        | YES       |                      |   aoa        |
+
+200 OK
+```javascript
+{
+    "category": "map",
+    "type": "mtd",
+    "date": "2015-10-08",
+    "level": "aoa",
+    "sublevels": [
+        {
+            "level": "central",
+            "title": "Central",
+            "params": [
+                {
+                    "index": 0,
+                    "key": "sales_new_td",
+                    "value": 8,
+                    "desc": "New",
+                    "subparams": [
+                        {
+                            "index": 0,
+                            "key": "percent_td_task",
+                            "value": 1.6,
+                            "lights": true,
+                            "desc": "Task"
+                        },
+                        ...
+                    ]
+                },
+                ...
+            ]
+        },
+        {
+            "level": "eastern",
+            "title": "Eastern",
+            "params": [
+                {
+                    "index": 0,
+                    "key": "sales_new_td",
+                    "value": 0,
+                    "desc": "New",
+                    "subparams": [
+                        {
+                            "index": 0,
+                            "key": "percent_td_task",
+                            "value": 0,
+                            "lights": true,
+                            "desc": "Task"
+                        },
+                        ...
+                    ]
+                },
+                ...
+            ]
+        }
+    ]
+}
+```
+422 Unprocessable Entity
+```javascript
+{
+    "error": "Date shouldn't be empty"
+}
+```
+
 ### GET /report/area
 | Param        | Mandatory | Description          | Sample       |
 | -------------|:---------:|:--------------------:| ------------:|
