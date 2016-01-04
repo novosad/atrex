@@ -768,8 +768,6 @@ Totals row is always presents in result of this method (on carline level)
 | date         | YES       | date                 |   2015-10-08 |
 | filter       | no        | geo,models,dealer    |   ^R,CENTRAL |
 
-Totals row is always presents in result of this method (on carline level)
-
 200 OK
 ```javascript
 {
