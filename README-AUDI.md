@@ -8,14 +8,20 @@
 200 OK
 ```javascript
 {
-    "category": "models",
     "date": "2015-10-08",
+    "category": "models",
     "items": [
         {
-            "carline": "A3 Cab",
-            "groups": "Cars",
             "model_code": "A3CAB18FWD",
-            "model_detail": "A3 Cab 1.8 FWD"
+            "model_detail": "A3 Cab 1.8 FWD",
+            "carline": "A3 Cab",
+            "groups": "Cars"
+        },
+        {
+            "model_code": "A3CAB20Q",
+            "model_detail": "A3 Cab 2.0 q",
+            "carline": "A3 Cab",
+            "groups": "Cars"
         },
         ...
     ]
@@ -37,24 +43,24 @@
 200 OK
 ```javascript
 {
-    "category": "dealers",
     "date": "2015-10-08",
+    "category": "dealers",
     "items": [
         {
-            "area": "90",
-            "area_name": "90 Chicago / St. Louis",
             "dealer_code": "402A01",
             "dealer_name": "Audi Hoffman Estates",
             "region": "Central",
+            "area": "90",
+            "area_name": "90 Chicago / St. Louis",
             "subarea": "90a",
             "subarea_name": "90a Chicago"
         },
         {
-            "area": "90",
-            "area_name": "90 Chicago / St. Louis",
             "dealer_code": "402A32",
             "dealer_name": "Audi Morton Grove",
             "region": "Central",
+            "area": "90",
+            "area_name": "90 Chicago / St. Louis",
             "subarea": "90a",
             "subarea_name": "90a Chicago"
         },
