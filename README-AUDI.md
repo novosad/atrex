@@ -428,11 +428,11 @@ stringifyFilterCode = function (type, models, dealers) {
 ```
 
 ### GET /report/map
-| Param        | Mandatory | Description          | Sample       |
-| -------------|:---------:|:--------------------:| ------------:|
-| date         | YES       | date                 |   2015-10-08 |
-| type         | YES       | period (mtd,qtd,ytd) |   mtd        |
-| level        | YES       |                      |   aoa        |
+| Param        | Mandatory | Description                                                      | Sample       |
+| -------------|:---------:|:----------------------------------------------------------------:| ------------:|
+| date         | YES       | date                                                             |   2015-10-08 |
+| type         | YES       | period (mtd,qtd,ytd)                                             |   mtd        |
+| level        | YES       | level (aoa,central,western,eastern,southern)                     |   aoa        |
 
 200 OK
 ```javascript
