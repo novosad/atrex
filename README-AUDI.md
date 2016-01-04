@@ -809,3 +809,75 @@ Totals row is always presents in result of this method (on carline level)
 {
     "error": "Date shouldn't be empty"
 }
+```
+
+### GET /report/kpiranking_chart
+| Param        | Mandatory | Description          | Sample       |
+| -------------|:---------:|:--------------------:| ------------:|
+| date         | YES       | date                 |   2015-10-08 |
+| filter       | no        | geo,models,dealer    |   ^D,401A14  |
+
+200 OK
+```javascript
+{
+    "date": "2015-10-08",
+    "category": "kpiranking_chart",
+    "filter": "^D,401A14",
+    "desc": "401A14 - Audi Burlington",
+    "charts": [
+        {
+            "index": 0,
+            "desc": "% MTD BPO",
+            "total": 0,
+            "key": "percent_mtd_bpo",
+            "cols": [
+                {
+                    "name": "Area",
+                    "value": 100,
+                    "rank": 1
+                },
+                {
+                    "name": "Region",
+                    "value": 100,
+                    "rank": 1
+                },
+                {
+                    "name": "AoA",
+                    "value": 50,
+                    "rank": 2
+                }
+            ]
+        },
+        {
+            "index": 1,
+            "desc": "% QTD BPO",
+            "total": null,
+            "key": "percent_qtd_bpo",
+            "cols": [
+                {
+                    "name": "Area",
+                    "value": 100,
+                    "rank": 1
+                },
+                {
+                    "name": "Region",
+                    "value": 100,
+                    "rank": 1
+                },
+                {
+                    "name": "AoA",
+                    "value": 50,
+                    "rank": 2
+                }
+            ]
+        },
+        ...
+    ]
+}
+```
+422 Unprocessable Entity
+```javascript
+{
+    "error": "Date shouldn't be empty"
+}
+```
