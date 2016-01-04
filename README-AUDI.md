@@ -762,7 +762,7 @@ Totals row is always presents in result of this method (on carline level)
 }
 ```
 
-### GET /report/carline
+### GET /report/history_chart
 | Param        | Mandatory | Description          | Sample       |
 | -------------|:---------:|:--------------------:| ------------:|
 | date         | YES       | date                 |   2015-10-08 |
