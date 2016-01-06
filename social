@@ -1,0 +1,59 @@
+<?php ?>
+<div class="share-page">
+    <?php
+    $facebook_link = get_post_meta(get_option('page_for_posts'), '_da_facebook_link', true);
+    $twitter_link = get_post_meta(get_option('page_for_posts'), '_da_twitter_link', true);
+    $linkedin_link = get_post_meta(get_option('page_for_posts'), '_da_linkedin_link', true);
+    $google_link = get_post_meta(get_option('page_for_posts'), '_da_google_link', true);
+    $pinterest_link = get_post_meta(get_option('page_for_posts'), '_da_pinterest_link', true);
+    $weibo_link = get_post_meta(get_option('page_for_posts'), '_da_weibo_link', true);
+    $mpweixin_link = get_post_meta(get_option('page_for_posts'), '_da_mpweixin_link', true);
+    ?>
+    <h3><?php $followus_override = get_post_meta(get_option('page_for_posts'), '_da_translation_follow_us', true);
+        echo $followus_override ? $followus_override : __('Follow us', 'meltwater'); ?></h3>
+
+    <div>
+        <ul class="inline-list share-list">
+            <?php
+            $blog_details = get_blog_details(get_current_blog_id());
+            $language = str_replace('/', '', $blog_details->path);
+            switch ($language) {
+                case 'cn' : ?>
+                    <li>
+                        <a href="<?php echo $weibo_link ? $weibo_link : 'https://www.weibo.com/meltwater'; ?>"
+                           target="_blank"><i class="fa fa-weibo"></i><a/>
+                    </li>
+                    <li>
+                        <a href="<?php echo $mpweixin_link ? $mpweixin_link : 'http://mp.weixin.qq.com/s?__biz=MzA3MTkyOTIyNA==&mid=204757372&idx=1&sn=f2e8ba2a530480cad6db05fe6983d149&scene=5#rd'; ?>"
+                           target="_blank"><i class="fa fa-wechat"></i></a>
+                    </li>
+                    <?php break;
+                default:
+                    ?>
+                    <li>
+                        <a href="<?php echo $facebook_link ? $facebook_link : 'https://www.facebook.com/MeltwaterGroup'; ?>"
+                           target="_blank"><i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li><a href="<?php echo $twitter_link ? $twitter_link : 'https://www.twitter.com/Meltwater'; ?>"
+                           target="_blank"><i class="fa fa-twitter"></i><a/>
+                    </li>
+                <?php } ?>
+            <li>
+                <a href="<?php echo $linkedin_link ? $linkedin_link : 'https://www.linkedin.com/company/meltwater-group'; ?>"
+                   target="_blank"><i class="fa fa-linkedin"></i>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo $google_link ? $google_link : 'https://plus.google.com/+meltwater/posts' ?>"
+                   target="_blank"><i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo $pinterest_link ? $pinterest_link : 'https://www.pinterest.com/meltwatergroup/' ?>"
+                   target="_blank"><i class="fa fa-pinterest"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
