@@ -1,0 +1,370 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
+
+namespace WindowsFormsApplication1
+{
+
+// объявляем структуру
+[Serializable]
+struct Football
+{
+public string fio;
+public string club;
+public string role;
+public int games;
+public int goal;
+public int assist;
+
+// конструктор
+public Football(string fio, string club, string role, int games, int goal, int assist)
+{
+this.fio = fio;
+this.club = club;
+this.role = role;
+this.games = games;
+this.goal = goal;
+this.assist = assist;
+}
+
+//перезрузка
+public override string ToString()
+{
+return string.Format("{0} {1} {2} {3} {4} {5}", fio, club, role, games, goal, assist);
+}
+
+}
+
+public partial class Form1 : Form
+{
+//создаем список объектов класса Football
+List<Football> meet = new List<Football>();
+
+// определяем файл
+string filename = "football.txt";
+
+// открываем файл
+public void openFile()
+{
+FileInfo file = new FileInfo(filename);
+if (file.Exists == false)
+{
+file.Create();
+}
+}
+
+public Form1()
+{
+// инициализация
+InitializeComponent();
+this.BackgroundImage = Image.FromFile(Application.StartupPath + @"\img\main.jpg");
+
+// вывод данных
+list = Uefa.getList();
+dataGridView1.DataSource = list;
+// объявляем заголовки
+SetHeaders();
+
+// photo player
+string file_name = "football.txt";
+
+string[] readText = System.IO.File.ReadAllLines(file_name);
+string[] words = readText[0].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+string ph = words[0];
+
+Bitmap image1 = new Bitmap(Application.StartupPath + @"\img\" + ph + ".bmp", true);
+pictureBox1.Image = image1;
+}
+
+// добавление
+private void button1_Click(object sender, EventArgs e)
+{
+string eFio, eClub, eRole;
+int eGoal, eAssist, eGames;
+
+// введеные данные
+eFio = textBox1.Text;
+eClub = textBox2.Text;
+eRole = textBox7.Text;
+eGames = Convert.ToInt32(textBox6.Text);
+eGoal = Convert.ToInt32(textBox3.Text);
+eAssist = Convert.ToInt32(textBox5.Text);
+
+// добавляем данные
+meet.Add(new Football(eFio, eClub, eRole, eGames, eGoal, eAssist));
+
+// запись в поток
+using (StreamWriter sw = new StreamWriter(filename, true, Encoding.Default))
+{
+sw.WriteLine(meet[meet.Count - 1]);
+}
+
+// вывод данных
+list = Uefa.getList();
+dataGridView1.DataSource = list;
+// объявляем заголовки
+SetHeaders();
+
+textBox1.Clear();
+textBox2.Clear();
+textBox3.Clear();
+textBox5.Clear();
+textBox6.Clear();
+textBox7.Clear();
+}
+
+// формирование вывода
+class Uefa
+{
+// геттеры и сеттеры свойств
+public int number
+{
+set;
+get;
+}
+public string fio
+{
+set;
+get;
+}
+public string club
+{
+set;
+get;
+}
+public string role
+{
+get;
+set;
+}
+public int games
+{
+get;
+set;
+}
+public int goal
+{
+set;
+get;
+}
+public int assist
+{
+set;
+get;
+}
+public Uefa(int number, string fio, string club, string role, int games, int goal, int assist)
+{
+this.number = number;
+this.fio = fio;
+this.club = club;
+this.role = role;
+this.games = games;
+this.goal = goal;
+this.assist = assist;
+}
+public static List<Uefa> getList()
+{
+// текст
+string filename = "football.txt";
+// структура
+List<Uefa> list = new List<Uefa>();
+// массив данных
+string[] arr = System.IO.File.ReadAllLines(filename, Encoding.Default);
+for (int i = 0; i < arr.Length; i++)
+{
+// разбивка на подстроки
+string[] line = arr[i].Split(' ');
+Uefa data = new Uefa(list.Count + 1, line[0], line[1], line[2], Convert.ToInt32(line[3]), Convert.ToInt32(line[4]), Convert.ToInt32(line[5]));
+// заполняем структуру
+list.Add(data);
+}
+return list;
+}
+}
+
+List<Uefa> list;
+
+// вывод
+private void button2_Click(object sender, EventArgs e)
+{
+// вывод данных
+list = Uefa.getList();
+dataGridView1.DataSource = list;
+// объявляем заголовки
+SetHeaders();
+}
+
+// шапка
+void SetHeaders()
+{
+dataGridView1.Columns[0].HeaderText = "№";
+dataGridView1.Columns[1].HeaderText = "Fio";
+dataGridView1.Columns[2].HeaderText = "Club";
+dataGridView1.Columns[3].HeaderText = "Role";
+dataGridView1.Columns[4].HeaderText = "Games";
+dataGridView1.Columns[5].HeaderText = "Goals";
+dataGridView1.Columns[6].HeaderText = "Assist";
+}
+
+// поиск
+private void button3_Click(object sender, EventArgs e)
+{
+string searchText = textBox4.Text;
+string[] arr = System.IO.File.ReadAllLines("football.txt", Encoding.Default);
+dataGridView1.DataSource = MakeList(arr, searchText);
+}
+
+// реализация поиска
+static List<Uefa> MakeList(string[] array, string searchText)
+{
+List<Uefa> list = new List<Uefa>();
+
+for (int i = 0; i < array.Length; i++)
+{
+if (array[i].Contains(searchText))
+{
+string[] temp = array[i].Split(' ');
+list.Add(new Uefa(list.Count + 1, temp[0], temp[1], temp[2], Convert.ToInt32(temp[3]), Convert.ToInt32(temp[4]), Convert.ToInt32(temp[5])));
+}
+}
+return list;
+}
+
+// удаление
+private void button4_Click(object sender, EventArgs e)
+{
+int number_delete = dataGridView1.CurrentRow.Index;
+
+string file_name = "football.txt";
+
+string[] readText = System.IO.File.ReadAllLines(file_name);
+using (System.IO.StreamWriter file = new System.IO.StreamWriter(file_name, false))
+{
+for (int i = 0; i < readText.Length; i++)
+{
+if (i != number_delete)
+file.WriteLine(readText[i]);
+}
+}
+// вывод данных
+list = Uefa.getList();
+dataGridView1.DataSource = list;
+// объявляем заголовки
+SetHeaders();
+}
+
+// photo player
+private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+{
+// id rows
+int number_photo = dataGridView1.CurrentRow.Index;
+
+// filename
+string file_name = "football.txt";
+
+string[] readText = System.IO.File.ReadAllLines(file_name);
+using (System.IO.StreamWriter file = new System.IO.StreamWriter(file_name, true))
+{
+for (int i = 0; i < readText.Length; i++)
+{
+if (i == number_photo)
+{
+string[] words = readText[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+string ph = words[0];
+
+Bitmap image1 = new Bitmap(Application.StartupPath + @"\img\" + ph + ".bmp", true);
+pictureBox1.Image = image1;
+}
+}
+}
+}
+
+// edit data
+private void button7_Click(object sender, EventArgs e)
+{
+string filename = "football.txt";
+
+FileStream fs = new FileStream(filename, FileMode.Create);
+StreamWriter streamWriter = new StreamWriter(fs);
+
+try
+{
+for (int j = 0; j < dataGridView1.Rows.Count; j++)
+{
+for (int i = 1; i < dataGridView1.Rows[j].Cells.Count; i++)
+{
+streamWriter.Write(dataGridView1.Rows[j].Cells[i].Value + " ");
+}
+
+streamWriter.WriteLine();
+}
+
+streamWriter.Close();
+fs.Close();
+
+// вывод данных
+list = Uefa.getList();
+dataGridView1.DataSource = list;
+// объявляем заголовки
+SetHeaders();
+
+MessageBox.Show("Файл успешно сохранен");
+}
+catch
+{
+MessageBox.Show("Ошибка при сохранении файла!");
+}
+}
+
+// sort combobox
+private void button8_Click(object sender, EventArgs e)
+{
+string sort_param = comboBox1.Text;
+
+switch (sort_param)
+{
+case "Fio":
+if (list == null)
+list = Uefa.getList();
+dataGridView1.DataSource = null;
+list = list.OrderBy(x => x.club).ToList<Uefa>();
+break;
+case "Club":
+if (list == null)
+list = Uefa.getList();
+dataGridView1.DataSource = null;
+list = list.OrderBy(x => x.club).ToList<Uefa>();
+break;
+case "Games":
+if (list == null)
+list = Uefa.getList();
+dataGridView1.DataSource = null;
+list = list.OrderByDescending(x => x.games).ToList<Uefa>();
+break;
+case "Goal":
+if (list == null)
+list = Uefa.getList();
+dataGridView1.DataSource = null;
+list = list.OrderByDescending(x => x.goal).ToList<Uefa>();
+break;
+case "Assist":
+if (list == null)
+list = Uefa.getList();
+dataGridView1.DataSource = null;
+list = list.OrderByDescending(x => x.assist).ToList<Uefa>();
+break;
+}
+
+dataGridView1.DataSource = list;
+SetHeaders();
+
+}
+
+}
+}
